@@ -1,0 +1,39 @@
+{
+  "name": "way-farer-backend",
+  "version": "1.0.0",
+  "description": "An online bus booking service",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "start": "NODE_ENV=production npm run build && node dist/index.js",
+    "dev": "NODE_ENV=development npm run build && nodemon dist/index.js",
+    "test": "jest",
+    "lint": "eslint .",
+    "clean": "rimraf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/desirekaleba/way-farer-backend.git"
+  },
+  "keywords": [
+    "wayfarer",
+    "bus",
+    "booking",
+    "system"
+  ],
+  "author": "Desire Kaleba",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/desirekaleba/way-farer-backend/issues"
+  },
+  "homepage": "https://github.com/desirekaleba/way-farer-backend#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.13.16",
+    "@babel/preset-env": "^7.13.15",
+    "eslint": "^7.25.0",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "rimraf": "^3.0.2"
+  }
+}
