@@ -7,7 +7,7 @@
     "build": "babel src --out-dir dist",
     "start": "NODE_ENV=production npm run build && node dist/index.js",
     "dev": "NODE_ENV=development npm run build && nodemon dist/index.js",
-    "test": "jest --verbose",
+    "test": "NODE_ENV=test jest --verbose --runInBand",
     "lint": "eslint .",
     "clean": "rimraf dist"
   },
