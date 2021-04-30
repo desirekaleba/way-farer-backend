@@ -16,7 +16,10 @@ const apiURLPrefixVersion = process.env.API_PREFIX_VERSION;
 
 app.use(`${apiURLPrefixVersion}/register`, registerRouter);
 
-const dbURL = process.env.MONGO_DB_URL;
+const dbURL = process.env.NODE_ENV === 'test'
+  ? process.env.TEST_MONGO_DB_URL
+  : process.env.MONGO_DB_URL;
+  
 mongoose.connect(dbURL, 
   { useNewUrlParser: true, 
     useUnifiedTopology: true,
