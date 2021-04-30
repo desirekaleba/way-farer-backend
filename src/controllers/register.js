@@ -17,8 +17,13 @@ const register = async (req, res) => {
 
   });
 
-  const saveUser = await user.save();
+  let saveUser;
 
+  try {
+    saveUser = await user.save();
+  } catch (error) {
+    console.error(error);
+  }
   if (!saveUser) {
     return res.status(400).json({
       status: 'failed',
@@ -30,7 +35,7 @@ const register = async (req, res) => {
     const secret = process.env.SECRET;
     const token = jwt.sign(
       {
-        userId: saveUser.id,
+        userId: saveUser._id,
         isAdmin: saveUser.Admin,
         email: saveUser.email,
       },
