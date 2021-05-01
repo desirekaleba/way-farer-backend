@@ -8,6 +8,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 dotenv.config();
 import registerRouter from './routes/register';
+import loginRouter from './routes/login';
 
 app.use(cors());
 app.options('*', cors());
@@ -18,6 +19,7 @@ app.use(morgan('tiny'));
 const apiURLPrefixVersion = process.env.API_PREFIX_VERSION;
 
 app.use(`${apiURLPrefixVersion}/register`, registerRouter);
+app.use(`${apiURLPrefixVersion}/login`, loginRouter);
 
 const dbURL = process.env.NODE_ENV === 'test'
   ? process.env.TEST_MONGO_DB_URL

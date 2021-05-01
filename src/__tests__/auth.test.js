@@ -30,7 +30,6 @@ describe('Register endpoint', () => {
     const newUser = {
       firstName: 'Desire',
       lastName: 'Kaleba',
-      userName: 'desirekaleba',
       password: '123456',
       email: 'desirekaleba@gmail.com',
       isAdmin: true,
@@ -50,7 +49,6 @@ describe('Register endpoint', () => {
     const newUser = {
       firstName: 'Desire',
       lastName: 'Kaleba',
-      userName: 'desirekaleba',
       password: '123456',
       email: 'desirekaleba@gmail.com',
       isAdmin: true,
@@ -63,6 +61,45 @@ describe('Register endpoint', () => {
       .post(`${apiURLPrefixVersion}/register`)
       .send(newUser)
       .expect(400);
+  });
+});
+
+describe('Login endpoint', () => {
+  test('Should return json', async () => {
+
+    const userDetails = {
+      email: 'desirekaleba@gmail.com',
+      password: '123456',
+    };
+    await api
+      .post(`${apiURLPrefixVersion}/login`)
+      .send(userDetails)
+      .expect(200)
+      .expect('Content-Type', /application\/json/);
+  }, 30000);
+
+  test('Should return 400', async () => {
+    const userDetails = {
+      email: 'desirekaleba@gmail.com',
+      password: '1234567j',
+    };
+
+    await api
+      .post(`${apiURLPrefixVersion}/login`)
+      .send(userDetails)
+      .expect(400);
+  });
+
+  test('Should return 404', async () => {
+    const userDetails = {
+      email: 'desirekahleba@gmail.com',
+      password: '1234567hgfd',
+    };
+
+    await api
+      .post(`${apiURLPrefixVersion}/login`)
+      .send(userDetails)
+      .expect(404);
   });
 });
 
