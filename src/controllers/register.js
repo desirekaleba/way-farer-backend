@@ -3,12 +3,11 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const register = async (req, res) => {
-  const { firstName, lastName, userName, password, email, isAdmin, city, country } = req.body;
+  const { firstName, lastName, password, email, isAdmin, city, country } = req.body;
 
   const user = new User({
     firstName,
     lastName,
-    userName,
     passwordHash: bcrypt.hashSync(password, 12),
     email,
     isAdmin,
@@ -22,7 +21,7 @@ const register = async (req, res) => {
   try {
     saveUser = await user.save();
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
   if (!saveUser) {
     return res.status(400).json({
@@ -48,7 +47,6 @@ const register = async (req, res) => {
         token,
         firstName: saveUser.firstName,
         lastName: saveUser.lastName,
-        userName: saveUser.userName,
         email: saveUser.email,
         isAdmin: saveUser.isAdmin,
         city: saveUser.isAdmin,
