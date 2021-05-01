@@ -1,5 +1,5 @@
-# way-farer-backend
-[![Build Status](https://travis-ci.com/desirekaleba/way-farer-backend.svg?branch=main)](https://travis-ci.com/desirekaleba/way-farer-backend)
+# way-farer-backend [![Build Status](https://travis-ci.com/desirekaleba/way-farer-backend.svg?branch=main)](https://travis-ci.com/desirekaleba/way-farer-backend)
+
 WayFarer is a public bus transportation booking service
 
 ## User stories
