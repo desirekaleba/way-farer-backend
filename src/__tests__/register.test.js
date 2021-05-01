@@ -45,6 +45,25 @@ describe('Register endpoint', () => {
       .expect(200)
       .expect('Content-Type', /application\/json/);
   }, 30000);
+
+  test('Should return 400', async () => {
+    const newUser = {
+      firstName: 'Desire',
+      lastName: 'Kaleba',
+      userName: 'desirekaleba',
+      password: '123456',
+      email: 'desirekaleba@gmail.com',
+      isAdmin: true,
+      city: 'Kampala',
+      country: 'Uganda',
+        
+    };
+
+    await api
+      .post(`${apiURLPrefixVersion}/register`)
+      .send(newUser)
+      .expect(400);
+  });
 });
 
 afterAll(() => {
