@@ -3,7 +3,8 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const register = async (req, res) => {
-  const { firstName, lastName, password, email, isAdmin, city, country } = req.body;
+  const { firstName, lastName, password, email, isAdmin, city, country } =
+    req.body;
 
   const user = new User({
     firstName,
@@ -13,7 +14,6 @@ const register = async (req, res) => {
     isAdmin,
     city,
     country,
-
   });
 
   let saveUser;
@@ -27,8 +27,8 @@ const register = async (req, res) => {
     return res.status(400).json({
       status: 'failed',
       data: {
-        message: 'Cannot create the user now'
-      }
+        message: 'Cannot create the user now',
+      },
     });
   } else {
     const secret = process.env.SECRET;
@@ -49,12 +49,11 @@ const register = async (req, res) => {
         lastName: saveUser.lastName,
         email: saveUser.email,
         isAdmin: saveUser.isAdmin,
-        city: saveUser.isAdmin,
+        city: saveUser.city,
         country: saveUser.country,
-      }
+      },
     });
   }
-
 };
 
 export default register;
