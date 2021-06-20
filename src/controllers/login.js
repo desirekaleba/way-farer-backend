@@ -9,12 +9,12 @@ const login = async (req, res) => {
 
   const user = await User.findOne({ email: email });
   if (!user) {
-    return res.status(404)
-      .json({
-        status: 'failed', 
-        data: {
-          message: 'User not found!'
-        } });
+    return res.status(404).json({
+      status: 'failed',
+      data: {
+        message: 'User not found!',
+      },
+    });
   }
 
   if (user && bcrypt.compareSync(password, user.passwordHash)) {
@@ -35,20 +35,18 @@ const login = async (req, res) => {
         lastName: user.lastName,
         email: user.email,
         isAdmin: user.isAdmin,
-        city: user.isAdmin,
+        city: user.city,
         country: user.country,
-      }
+      },
     });
   } else {
-    res.status(400)
-      .json({
-        status: 'failed',
-        data: {
-          message: 'Wrong password!',
-        }
-      });
+    res.status(400).json({
+      status: 'failed',
+      data: {
+        message: 'Wrong password!',
+      },
+    });
   }
-
 };
 
 export default login;
