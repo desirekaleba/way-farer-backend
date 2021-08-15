@@ -1,6 +1,8 @@
 import express from 'express';
 const router = express.Router();
 import tripController from '../controllers/trip';
+import checkUserAuth from '../middlewares/checkUserAuth';
+
 import multer from 'multer';
 
 const FILE_TYPE_MAP = {
@@ -25,10 +27,10 @@ const storage = multer.diskStorage({
 
 const uploadOptions = multer({ storage });
 
-router.post('/', uploadOptions.single('image'), tripController.addTrip);
+router.post('/', uploadOptions.single('image'), checkUserAuth, tripController.addTrip);
 router.get('/', tripController.getAllTrips);
 router.get('/:tripId', tripController.getTripById);
-router.patch('/:tripId', tripController.updateTrip);
-router.delete('/:tripId/', tripController.cancelTrip);
+router.patch('/:tripId', checkUserAuth, tripController.updateTrip);
+router.delete('/:tripId/', checkUserAuth, tripController.cancelTrip);
 
 export default router;
