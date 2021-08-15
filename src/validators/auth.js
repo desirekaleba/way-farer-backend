@@ -12,7 +12,7 @@ export const registerValidator = (req, res, next) => {
       .required(),
     city: Joi.string(),
     country: Joi.string(),
-    is_admin: Joi.bool(),
+    isAdmin: Joi.bool(),
   });
 
   validatorHandler(schema, req, res, next);
