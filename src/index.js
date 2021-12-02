@@ -4,7 +4,7 @@ import app from './app';
 import http from 'http';
 import logger from './utils/logger';
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 
 const server = http.createServer(app);
 
